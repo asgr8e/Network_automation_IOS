@@ -1,0 +1,3 @@
+ip dhcp pool Distribution-Server20
+host 10.7.35.20 255.255.255.0
+client-iden 0100.2b67.3e8c.be
