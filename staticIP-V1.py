@@ -45,26 +45,23 @@ for i in range(length):
     net_connect.enable()
     name = ip + ".txt"
     command=net_connect.send_config_from_file(name)
-    def report():
-        for i in length:
-            confirmation=net_connect.send_command('sh run | sec Distribution-Server20')
-            #finding version in output using regular expressions
-            pattern=("ip dhcp pool Distribution-Server20")
-            match = re.search(pattern,confirmation)
-            if match:
-                with open ('Final_report.txt',"a+") as f:
-                    f.writelines(ip+ " " +pattern+" success")
-                    f.writelines("\n")
-                    f.seek(0)
-                    f.close()
+
+    confirmation=net_connect.send_command('sh run | sec Distribution-Server20')
+    #finding version in output using regular expressions
+    pattern=("ip dhcp pool Distribution-Server20")
+    match = re.search(pattern,confirmation)
+    if match:
+        with open ('Final_report.txt',"a+") as f:
+            f.writelines(ip+ " " +pattern+" success")
+            f.writelines("\n")
+            f.close()
                             
-            else:
-                with open ('Final_report.txt',"a+") as f:
-                    f.writelines(ip+ " " +pattern+" failed")
-                    f.writelines("\n")
-                    f.seek(0)
-                    f.close()
-        report()
+    else:
+        with open ('Final_report.txt',"a+") as f:
+            f.writelines(ip+ " " +pattern+" failed")
+            f.writelines("\n")
+            f.close()
+
         
 
         
